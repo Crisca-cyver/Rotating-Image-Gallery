@@ -1,6 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import { EffectCoverflow, Pagination, Navigation, Autoplay } from "swiper/modules";
 
 // Estilos de Swiper
 import "swiper/css";
@@ -33,21 +33,24 @@ export function RotatingGallery({
   ariaLabel = "Galería de imágenes con rotación",
 }: RotatingGalleryProps) {
   return (
-    <section
-      className={`w-full max-w-6xl mx-auto ${className}`}
-      aria-label={ariaLabel}
-    >
+    <section className="w-full max-w-6xl mx-auto" aria-label="Galería de imágenes con rotación">
       <Swiper
-        modules={[EffectCoverflow, Pagination, Navigation]}
+        modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
         effect="coverflow"
+        speed={900}
+        autoplay={{
+          delay: 3600,
+          pauseOnMouseEnter: true,
+          disableOnInteraction: false,
+        }}
         grabCursor
         centeredSlides
         loop
         slidesPerView="auto"
         coverflowEffect={{
-          rotate: 50,
+          rotate: 40,
           stretch: 0,
-          depth: 120,
+          depth: 100,
           modifier: 1,
           slideShadows: true,
         }}
