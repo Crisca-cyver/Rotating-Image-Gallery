@@ -32,7 +32,7 @@ A modern, interactive image gallery built with React, TypeScript, Vite, Tailwind
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/yourusername/rotating-image-gallery.git
 cd rotating-image-gallery
 ```
 
