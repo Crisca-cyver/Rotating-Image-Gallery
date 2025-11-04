@@ -37,9 +37,9 @@ export function RotatingGallery({
       <Swiper
         modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
         effect="coverflow"
-        speed={900}
+        speed={600}
         autoplay={{
-          delay: 3600,
+          delay: 4000,
           pauseOnMouseEnter: true,
           disableOnInteraction: false,
         }}
@@ -48,11 +48,11 @@ export function RotatingGallery({
         loop
         slidesPerView="auto"
         coverflowEffect={{
-          rotate: 40,
+          rotate: 25,
           stretch: 0,
-          depth: 100,
+          depth: 80,
           modifier: 1,
-          slideShadows: true,
+          slideShadows: false,
         }}
         pagination={{ clickable: true }}
         navigation
@@ -63,7 +63,7 @@ export function RotatingGallery({
             key={idx}
             className="!w-[280px] md:!w-[380px] lg:!w-[480px]"
           >
-            <figure className="relative overflow-hidden rounded-xl shadow-2xl">
+            <figure className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <img
                 src={img.src}
                 alt={img.alt ?? `Imagen ${idx + 1}`}
@@ -71,7 +71,7 @@ export function RotatingGallery({
                 loading="lazy"
               />
               {img.alt && (
-                <figcaption className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-sm text-sm md:text-base px-3 py-2">
+                <figcaption className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm text-gray-700 text-sm px-3 py-2 font-medium">
                   {img.alt}
                 </figcaption>
               )}
