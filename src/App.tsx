@@ -1,29 +1,23 @@
-import React from "react";
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// import React from "react";
 import './App.css'
 import RotatingGallery from "./components/RotatingGallery";
-
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center px-4 py-8">
-      <header className="text-center mb-8">
-        <h1 className="text-4xl md:text-5xl font-light text-gray-100 mb-3">Rotating Gallery</h1>
-        <p className="text-gray-300 text-lg">
-          A minimalist image gallery with smooth transitions
+    <main className="min-h-screen grid place-content-center px-4">
+      <header className="text-center font-sans">
+        <h1 className="text-3xl md:text-4xl font-bold text-slate-100">
+          Rotating Image Gallery
+        </h1>
+        <p className="text-slate-300 mt-2">
+          Galería con efecto coverflow usando Swiper + Tailwind.
         </p>
       </header>
 
-      <RotatingGallery className="mb-8" />
+      <RotatingGallery className="mt-8 w-full max-w-5xl mx-auto" />
 
-      <footer className="text-sm text-gray-400">
-        Built with modern web technologies
+      <footer className="mt-10 text-sm text-slate-400 text-center">
+        Hecho con Vite + React + TypeScript + Tailwind + Swiper
       </footer>
     </main>
   );
 }
-
-export default App

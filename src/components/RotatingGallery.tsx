@@ -1,6 +1,11 @@
-import React from "react";
+// import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination, Navigation, Autoplay } from "swiper/modules";
+import {
+  EffectCoverflow,
+  Pagination,
+  Navigation,
+  Autoplay, // 1. importar
+} from "swiper/modules";
 
 // Estilos de Swiper
 import "swiper/css";
@@ -20,67 +25,77 @@ type RotatingGalleryProps = {
 };
 
 const defaultImages: ImageItem[] = [
-  { src: "https://picsum.photos/id/1015/800/500", alt: "Paisaje montañoso" },
-  { src: "https://picsum.photos/id/1025/800/500", alt: "Perro de perfil" },
-  { src: "https://picsum.photos/id/1035/800/500", alt: "Bosque neblinoso" },
-  { src: "https://picsum.photos/id/1041/800/500", alt: "Costa rocosa" },
-  { src: "https://picsum.photos/id/1056/800/500", alt: "Cascada" },
+  { src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop", alt: "Paisaje montañoso" },
+  { src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop", alt: "Perro de perfil" },
+  { src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=500&fit=crop", alt: "Bosque neblinoso" },
+  { src: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&h=500&fit=crop", alt: "Costa rocosa" },
+  { src: "https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=800&h=500&fit=crop", alt: "Cascada" },
 ];
 
 export function RotatingGallery({
   images = defaultImages,
-  className = "",
   ariaLabel = "Galería de imágenes con rotación",
 }: RotatingGalleryProps) {
   return (
-    <section className="w-full max-w-7xl mx-auto px-4" aria-label="Galería de imágenes con rotación">
+    <section
+      className="w-full max-w-5xl mx-auto px-4" // ancho fijo + padding lateral
+      aria-label={ariaLabel}
+    >
       <Swiper
-        modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
+        modules={[EffectCoverflow, Pagination, Navigation, Autoplay]} // 2. añadir Autoplay
         effect="coverflow"
-        speed={600}
+        speed={800}
         autoplay={{
-          delay: 4000,
+          delay: 3500,
           pauseOnMouseEnter: true,
           disableOnInteraction: false,
         }}
         grabCursor
         centeredSlides
         loop
-        slidesPerView="auto"
+        slidesPerView={3}
+        breakpoints={{
+          640: {
+            slidesPerView: 3,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        }}
         coverflowEffect={{
-          rotate: 25,
-          stretch: 0,
-          depth: 80,
+          rotate: 20,
+          stretch: -25,
+          depth: 120,
           modifier: 1,
           slideShadows: false,
         }}
-        pagination={{ clickable: true }}
+        pagination={{ clickable: true, dynamicBullets: true }}
         navigation
-        className="my-8"
+        watchSlidesProgress={true}
+        className="my-8 w-full" // ocupa 100% del ancho del section
       >
         {images.map((img, idx) => (
-          <SwiperSlide
-            key={idx}
-            className="!w-[320px] md:!w-[420px] lg:!w-[520px]"
-          >
+          <SwiperSlide className="!w-[300px] md:!w-[380px] lg:!w-[460px]">
             <figure className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
               <img
                 src={img.src}
                 alt={img.alt ?? `Imagen ${idx + 1}`}
                 className="block w-full h-[420px] md:h-[480px] lg:h-[540px] object-cover rounded-2xl"
                 loading="lazy"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = 'https://via.placeholder.com/400x300/374151/ffffff?text=Image+Not+Found';
+                }}
               />
-              {img.alt && (
-                <figcaption className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm text-gray-700 text-sm px-3 py-2 font-medium">
+              <figcaption className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-sm
+                        text-sm md:text-base px-3 py-2 text-slate-100 font-medium">
                   {img.alt}
                 </figcaption>
-              )}
-            </figure>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </section>
-  );
-}
-
+              </figure>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </section>
+    );
+  };
 export default RotatingGallery;
