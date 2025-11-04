@@ -33,7 +33,7 @@ export function RotatingGallery({
   ariaLabel = "Galería de imágenes con rotación",
 }: RotatingGalleryProps) {
   return (
-    <section className="w-full max-w-6xl mx-auto" aria-label="Galería de imágenes con rotación">
+    <section className="w-full max-w-7xl mx-auto px-4" aria-label="Galería de imágenes con rotación">
       <Swiper
         modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
         effect="coverflow"
@@ -61,13 +61,13 @@ export function RotatingGallery({
         {images.map((img, idx) => (
           <SwiperSlide
             key={idx}
-            className="!w-[280px] md:!w-[380px] lg:!w-[480px]"
+            className="!w-[320px] md:!w-[420px] lg:!w-[520px]"
           >
-            <figure className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <figure className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
               <img
                 src={img.src}
                 alt={img.alt ?? `Imagen ${idx + 1}`}
-                className="block w-full h-[380px] md:h-[420px] lg:h-[480px] object-cover"
+                className="block w-full h-[420px] md:h-[480px] lg:h-[540px] object-cover rounded-2xl"
                 loading="lazy"
               />
               {img.alt && (

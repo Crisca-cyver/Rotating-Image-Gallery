@@ -28,7 +28,7 @@ body {
   padding: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
 }
 
 h1 {
@@ -66,7 +66,7 @@ button:focus-visible {
 @reference "tailwindcss";
 
 body {
-  @apply bg-white text-gray-900;
+  @apply bg-gray-900 text-gray-100;
 }
 
 .swiper-wrapper {
